@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static lab_3_sd.ClientStart.nParticiones;
@@ -123,27 +122,57 @@ switch (http_method) {
         id = "GET /consulta/" + id;
         String fromServer;            
         
-        //Socket para el cliente (host, puerto)
+        //Socket para el cache (host, puerto)
         Socket clientSocket = new Socket("localhost", puerto_cache);
-        //Buffer para enviar el dato al server
+        //Buffer para enviar el dato al cache
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-        //Buffer para recibir dato del servidor
+        //Buffer para recibir dato del front
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        //Leemos del cliente y lo mandamos al servidor
+        //Leemos del front y lo mandamos al cache
         outToServer.writeBytes( id + '\n');
-        //Recibimos del servidor
+        //Recibimos del cache
         fromServer = inFromServer.readLine();
         System.out.println("Cache response: " + fromServer);
-        //Enviamos miss al cliente
-        if(fromServer.equals("MISS")){
-            outToClient.writeBytes("MISS\n");
-        }
-        else{
+        //Enviamos respuesta al front
+        if(!fromServer.equals("MISS")){            
             outToClient.writeBytes(fromServer+"\n");
         }
-        //Cerramos el socket
-        clientSocket.close();
-        // INDEX
+        else{// INDEX
+            //Cerramos el socket y buscamos en el index
+            clientSocket.close();
+            
+            System.out.println("Enviamos la consulta(stopwords filtradas) al index, ya que falló cache: " + id);
+            
+            // estructura improvisada
+            String[] requests = {id};
+
+            for (String request : requests) {
+                //Socket para el index (host, puerto)
+                clientSocket = new Socket("localhost", puerto_index);
+
+                //Buffer para enviar el dato al index
+                outToServer = new DataOutputStream(clientSocket.getOutputStream());
+
+                //Buffer para recibir dato del index
+                inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+                //Leemos del front y lo mandamos al index
+                outToServer.writeBytes(request + '\n');
+
+                //Recibimos del index
+                fromServer = inFromServer.readLine();
+                System.out.println("Server response: " + fromServer);
+                
+                if(fromServer.equals("MISS")){            
+                    outToClient.writeBytes("MISS\n");
+                }
+                else{
+                    outToClient.writeBytes(fromServer+"\n");
+                }                
+                //Cerramos el socket
+                clientSocket.close();
+            }
+        }    
         break;
     default:
         break;

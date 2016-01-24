@@ -22,7 +22,7 @@
         <%
             String parametro = request.getParameter("searchbox");
             parametro = ClientStart.filtrarSW(parametro);
-            //parametro = ClienteGET.clientGET(parametro);
+            parametro = ClienteGET.clientGET(parametro);
         %>
         <p> <%= parametro %> </p>
     </body>

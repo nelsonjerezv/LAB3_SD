@@ -6,15 +6,12 @@
 package lab_3_sd;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -127,8 +124,8 @@ public class ClientStart {
     
     public static String filtrarSW(String cadena) throws FileNotFoundException, IOException {
         
-//        try (FileReader xr = new FileReader("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\LAB3_SD\\stop-words-spanish.txt")) {
-        try (FileReader xr = new FileReader("C:\\Users\\Amaranta Saball\\Documents\\NetBeansProjects\\LAB3_SD\\stop-words-spanish.txt")) {
+        try (FileReader xr = new FileReader("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\LAB3_SD\\stop-words-spanish.txt")) {
+//        try (FileReader xr = new FileReader("C:\\Users\\Amaranta Saball\\Documents\\NetBeansProjects\\LAB3_SD\\stop-words-spanish.txt")) {
             if(xr == null){
                 System.out.println("Archivo erroneo");
                 System.exit(1);
@@ -177,5 +174,4 @@ public class ClientStart {
         
         return cadena;
     }
-    
 }
