@@ -11,7 +11,8 @@ public class ClienteGET {
     
     public static String clientGET(String asd) throws Exception{
         
-        FileReader fr = new FileReader("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\LAB3_SD\\web\\FrontConf.ini");
+//        FileReader fr = new FileReader("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\LAB3_SD\\web\\FrontConf.ini");
+        FileReader fr = new FileReader("C:\\Users\\Amaranta Saball\\Documents\\NetBeansProjects\\LAB3_SD\\web\\FrontConf.ini");
         BufferedReader bf = new BufferedReader(fr);
         String parametro;
         parametro = bf.readLine();

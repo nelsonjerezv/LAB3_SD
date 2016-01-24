@@ -78,24 +78,7 @@ public class ClientStart {
             }
         }
         fr.close();
-        bf.close();
-        try (FileReader xr = new FileReader(stopwords)) {
-            if(xr == null){
-                System.out.println("Archivo erroneo");
-                System.exit(1);
-            }
-            try (BufferedReader xf = new BufferedReader(xr)) {
-                palabras = new ArrayList();
-                String aux1;
-                
-                while( (aux1 = xf.readLine() ) != null ){
-                    palabras.add(aux1);
-                }
-                xf.close();
-            }
-            xr.close();  
-            System.out.println("lista de " + palabras.size() + " stopwords");
-        }
+        bf.close();        
         
         ServerSocket ssock = new ServerSocket(puerto_front);
         System.out.println("Listening...");
@@ -143,6 +126,25 @@ public class ClientStart {
 //    }
     
     public static String filtrarSW(String cadena) throws FileNotFoundException, IOException {
+        
+//        try (FileReader xr = new FileReader("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\LAB3_SD\\stop-words-spanish.txt")) {
+        try (FileReader xr = new FileReader("C:\\Users\\Amaranta Saball\\Documents\\NetBeansProjects\\LAB3_SD\\stop-words-spanish.txt")) {
+            if(xr == null){
+                System.out.println("Archivo erroneo");
+                System.exit(1);
+            }
+            try (BufferedReader xf = new BufferedReader(xr)) {
+                palabras = new ArrayList();
+                String aux1;
+                
+                while( (aux1 = xf.readLine() ) != null ){
+                    palabras.add(aux1);
+                }
+                xf.close();
+            }
+            xr.close();  
+            System.out.println("lista de " + palabras.size() + " stopwords");
+        }
               
         // reemplazamos caracteres especiales        
         cadena = cadena.replaceAll("[Ñ]","N");
@@ -169,7 +171,8 @@ public class ClientStart {
         
         // eliminamos las stopwords, los espacios aseguran no eliminar parte de palabras
         for (int i = 0; i < palabras.size(); i++) {
-            cadena = cadena.replace( (" " + palabras.get(i) + " " ), " ");
+            String aux = "\\b"+palabras.get(i)+"\\b";            
+            cadena = cadena.replaceAll( aux , "");
         }
         
         return cadena;

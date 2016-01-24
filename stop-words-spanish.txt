@@ -1,4 +1,4 @@
-﻿algún
+algun
 alguna
 algunas
 alguno
@@ -107,7 +107,7 @@ podriamos
 podrian
 podrias
 por
-por qué
+por que
 porque
 primero
 puede
