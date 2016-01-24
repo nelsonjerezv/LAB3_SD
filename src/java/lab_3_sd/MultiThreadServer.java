@@ -135,7 +135,12 @@ switch (http_method) {
         fromServer = inFromServer.readLine();
         System.out.println("Cache response: " + fromServer);
         //Enviamos miss al cliente
-        outToClient.writeBytes("MISS\n");
+        if(fromServer.equals("MISS")){
+            outToClient.writeBytes("MISS\n");
+        }
+        else{
+            outToClient.writeBytes(fromServer+"\n");
+        }
         //Cerramos el socket
         clientSocket.close();
         // INDEX
