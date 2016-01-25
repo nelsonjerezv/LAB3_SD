@@ -14,12 +14,8 @@
     <body>
         <h1>Busqueda no encontrada</h1>
         <form
-            <input  align="center" type="submit" value="Volver a la pagina principal" />
+            <input  align="center" type="submit" value="Volver" />
+            <input alingn="center" type="button" onclick="start.jsp" value="Volver" />
         </form>
-        <%
-            if(true){
-                response.sendRedirect("start.jsp");
-            }
-        %>
     </body>
 </html>
