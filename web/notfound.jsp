@@ -9,9 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>My WSE</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Busqueda no encontrada</h1>
+        <form
+            <input  align="center" type="submit" value="Volver a la pagina principal" />
+        </form>
+        <%
+            if(true){
+                response.sendRedirect("start.jsp");
+            }
+        %>
     </body>
 </html>
