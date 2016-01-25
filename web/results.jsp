@@ -4,6 +4,7 @@
     Author     : Nelson
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="java.io.DataOutputStream"%>
@@ -23,7 +24,37 @@
             String parametro = request.getParameter("searchbox");
             parametro = ClientStart.filtrarSW(parametro);
             parametro = ClienteGET.clientGET(parametro);
+            
+            String[] documentos = parametro.split(",");
+            ArrayList<String[]> docs = new ArrayList();
+            
+            for (int i = 0; i < documentos.length; i++) {
+                String[] docActual = new String[2];
+                docActual = documentos[i].split("\\*");
+                docActual[0] = docActual[0].replaceAll("[^a-z \\nA-Z]","");
+                docActual[1] = docActual[1].replaceAll("[^a-z \\nA-Z]","");
+                docs.add(docActual);
+            }
         %>
-        <p> <%= parametro %> </p>
+        
+        <table>
+            <tr><td>
+        
+            </td>
+        </table>
+            
+        <p>
+        <%
+
+            for(int i = 0; i < docs.size(); i++)
+            {
+               out.println((String)docs.get(i)[0] + "<br>");
+            }
+
+            %>
+        </p>
+        
+        
+        
     </body>
 </html>
