@@ -15,7 +15,7 @@
         <h1>Busqueda no encontrada</h1>
         <form action="start.jsp"
             <input  align="center" type="submit" value="Volver" />
-            <input alingn="center" type="submit" value="Volver" />
+            <input align="center" type="submit" value="Volver" />
         </form>
     </body>
 </html>
