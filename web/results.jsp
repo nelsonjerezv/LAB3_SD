@@ -44,11 +44,10 @@
                 out.println((String) "<p>");
                 for(int i = 0; i < docs.size(); i++)
                 {
-                   out.println((String)docs.get(i)[0] + "<br>");
+//                   out.println((String)docs.get(i)[0] + "<br>");
+                   out.println( "<a href=\"display.jsp?titulo="+docs.get(i)[0]+"&cuerpo="+docs.get(i)[1]+"\">" + (String)docs.get(i)[0] + "</a><br>");
                 }
                 out.println((String) "</p>");
-                
-                
                
                 //<form method="post" action="update.jsp">");
   
