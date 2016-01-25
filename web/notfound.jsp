@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>Busqueda no encontrada</h1>
-        <form
+        <form action="start.jsp"
             <input  align="center" type="submit" value="Volver" />
-            <input alingn="center" type="button" onclick="start.jsp" value="Volver" />
+            <input alingn="center" type="submit" value="Volver" />
         </form>
     </body>
 </html>

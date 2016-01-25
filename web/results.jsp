@@ -47,6 +47,14 @@
                    out.println((String)docs.get(i)[0] + "<br>");
                 }
                 out.println((String) "</p>");
+                
+                
+               
+                //<form method="post" action="update.jsp">");
+  
+                //<input type="hidden" name="userId" value="${user.id}">  
+                
+                
             }
             %>
         
