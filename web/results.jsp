@@ -25,34 +25,30 @@
             parametro = ClientStart.filtrarSW(parametro);
             parametro = ClienteGET.clientGET(parametro);
             
-            String[] documentos = parametro.split(",");
-            ArrayList<String[]> docs = new ArrayList();
-            
-            for (int i = 0; i < documentos.length; i++) {
-                String[] docActual = new String[2];
-                docActual = documentos[i].split("\\*");
-                docActual[0] = docActual[0].replaceAll("[^a-z \\nA-Z]","");
-                docActual[1] = docActual[1].replaceAll("[^a-z \\nA-Z]","");
-                docs.add(docActual);
+            if (parametro.equals("MISS")) {
+                    response.sendRedirect("notfound.jsp"); 
             }
-        %>
-        
-        <table>
-            <tr><td>
-        
-            </td>
-        </table>
+            else{
+                String[] documentos = parametro.split(",");
+                ArrayList<String[]> docs = new ArrayList();
+
+                for (int i = 0; i < documentos.length; i++) {
+                    String[] docActual = new String[2];
+                    docActual = documentos[i].split("\\*");
+                    docActual[0] = docActual[0].replaceAll("[^a-z \\nA-Z]","");
+                    docActual[1] = docActual[1].replaceAll("[^a-z \\nA-Z]","");
+                    docs.add(docActual);
+                }
             
-        <p>
-        <%
-
-            for(int i = 0; i < docs.size(); i++)
-            {
-               out.println((String)docs.get(i)[0] + "<br>");
+        
+                out.println((String) "<p>");
+                for(int i = 0; i < docs.size(); i++)
+                {
+                   out.println((String)docs.get(i)[0] + "<br>");
+                }
+                out.println((String) "</p>");
             }
-
             %>
-        </p>
         
         
         
